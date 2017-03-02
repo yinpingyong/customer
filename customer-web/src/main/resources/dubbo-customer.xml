@@ -9,7 +9,8 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:annotation />
+    <!-- 如果使用dubbo Bean 自动注入，需要引入自动扫包器 -->
+    <dubbo:annotation package="cn.com.bestpay"/>
 
 	<!--第一步：配置应用名称-->
 	<dubbo:application name="customer"/>
@@ -25,7 +26,7 @@
                     timeout="60000" check="false" retries="0" default="false" />
 
     <!--第五步：配置调用dubbo的接口-->
-    <dubbo:reference id="loginService"
-                     interface="cn.com.bestpay.server.service.LoginService" registry="customerRegistry" consumer="consumerServer"/>
+    <!--<dubbo:reference id="loginService"-->
+                     <!--interface="cn.com.bestpay.server.service.LoginService" registry="customerRegistry" consumer="consumerServer"/>-->
 
 </beans>

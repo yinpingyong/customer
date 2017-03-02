@@ -1,5 +1,6 @@
 package cn.com.bestpay.customer.controller;
 
+import cn.com.bestpay.customer.service.ServerModel;
 import cn.com.bestpay.server.model.request.LoginRequest;
 import cn.com.bestpay.server.model.response.LoginResponse;
 import cn.com.bestpay.server.model.response.base.CommonResponse;
@@ -18,9 +19,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
-    @Autowired
+    /**
+     * 基于配置方式，获取dubbo对象
+     * @param username
+     * @param password
+     * @return
+     */
+   /* @Autowired
     @Qualifier("loginService")
-    private LoginService loginService;
+    private LoginService loginService;*/
+
+   @Autowired
+   @Qualifier("serverModel")
+   private ServerModel serverModel;
 
     @RequestMapping(value =  "/login" )
     public ModelAndView login(String username, String password) {
@@ -31,7 +42,7 @@ public class LoginController {
         loginRequest.setName(username);
         loginRequest.setPassword(password);
 
-        CommonResponse<LoginResponse>  commonResponse = loginService.LoginService(loginRequest);
+        CommonResponse<LoginResponse>  commonResponse = serverModel.loginService.LoginService(loginRequest);
         mav.addObject("commonResponse",commonResponse.toString());
 
         mav.setViewName("main");
