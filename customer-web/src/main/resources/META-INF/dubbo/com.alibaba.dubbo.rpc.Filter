@@ -1,0 +1,2 @@
+consumerFilter=cn.com.bestpay.customer.filter.ConsumerFilter
+providerFilter=cn.com.bestpay.customer.filter.ProviderFilter
